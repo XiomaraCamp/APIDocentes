@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using XJSC120230911.Models;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace XJSC120230911.Controllers
 {
@@ -8,36 +8,26 @@ namespace XJSC120230911.Controllers
     [ApiController]
     public class DocentesController : ControllerBase
     {
-        // GET: api/<DocentesController>
+        
+        static List<Docentes> docentes = new List<Docentes>();
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Docentes> Get()
         {
-            return new string[] { "value1", "value2" };
+            return docentes;
         }
 
-        // GET api/<DocentesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        
+        
 
-        // POST api/<DocentesController>
+        
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Docentes docente)
         {
+            docentes.Add(docente);
+            return Ok();
         }
 
-        // PUT api/<DocentesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<DocentesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        
     }
 }
